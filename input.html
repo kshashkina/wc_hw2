@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input</title>
+  <link rel="icon" type="image/x-icon" href="image_2023-09-07_20-17-53.png">
+
+</head>
+<body style="background-color: darkslategrey; font-family: 'Arial Black', serif">
+
+<h1 style="color: white; text-align: center; font-family: 'Arial Black',serif">Input</h1>
+<a href="index.html">
+  <img src="image_2023-09-07_20-17-53.png" alt="Home Icon" width="50" height="50" style="margin-left: 40px;">
+</a>
+
+<nav>
+  <ul style="color: white">
+    <li><a href="input.html" style="color: white;">Input</a> </li>
+    <li><a href="styling.html" style="color: white;">Styling</a></li>
+    <li><a href="media.html" style="color: white;">Media</a></li>
+  </ul>
+</nav>
+
+<form style="color: white">
+  <label for="name">Name:</label>
+  <input type="text" placeholder="Enter your name" id="name" name="name"><br><br>
+
+  <label for="image">Upload Your Photo:</label>
+  <input type="file" id="image" name="image"><br><br>
+
+  <label>Gender:</label>
+  <input type="radio" id="male" name="gender" value="Male">
+  <label for="male">Male</label>
+  <input type="radio" id="female" name="gender" value="Female">
+  <label for="female">Female</label>
+  <input type="radio" id="other" name="gender" value="Other">
+  <label for="other">Other</label><br><br>
+
+  <label for="cookies">Accept Cookies:</label>
+  <input type="checkbox" id="cookies" name="cookies"><br><br>
+
+  <input type="button" value="Save Data" style="border: none; font-family: 'Arial Black',serif;
+  background-color: white;color: darkslategrey;padding: 10px 20px;
+   border-radius: 5px" onclick="saveData()">
+</form>
+
+<table style="color: white;">
+  <caption style="text-align: center; font-size: 18px;">User Data</caption>
+  <tr>
+    <th style="border: 1px solid white; border-radius: 5px; padding: 8px;">Name</th>
+    <th style="border: 1px solid white; border-radius: 5px; padding: 8px;">Gender</th>
+    <th style="border: 1px solid white; border-radius: 5px; padding: 8px;">Accept Cookies</th>
+    <th style="border: 1px solid white; border-radius: 5px; padding: 8px;">Uploaded File</th>
+  </tr>
+</table>
+
+<script>
+  function saveData() {
+    var name = document.getElementById("name").value;
+    var gender = document.querySelector('input[name="gender"]:checked');
+    var acceptCookies = document.getElementById("cookies").checked;
+    var fileInput = document.getElementById("image");
+    //remove path, only file name
+    var fileName = fileInput.value.split("\\").pop();
+
+    var table = document.querySelector("table");
+    var newRow = table.insertRow(table.rows.length);
+
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
+
+    cell1.innerHTML = name ? name : "Not mentioned";
+    cell2.innerHTML = gender ? gender.value : "Not mentioned";
+    cell3.innerHTML = acceptCookies ? "Yes" : "No";
+    cell4.innerHTML = fileName ? fileName : "No photo";
+  }
+</script>
+<footer style="text-align: center; color: white"><p>Input Page</p></footer>
+</body>
+</html>
